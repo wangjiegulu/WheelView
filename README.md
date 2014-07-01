@@ -3,6 +3,13 @@ WheelView
 
 Android滚动选择控件
 
+
+<img src='https://raw.githubusercontent.com/wangjiegulu/WheelView/master/image/image01.png' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/WheelView/master/image/image02.png' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/WheelView/master/image/image03.png' height='500px'/>
+
+
+
     实现Android竖直滚动选择功能
     注意：
         1. 此demo中注解、日志等功能使用了AndroidInject（https://github.com/wangjiegulu/androidInject）
