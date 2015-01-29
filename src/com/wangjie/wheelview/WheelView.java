@@ -108,7 +108,10 @@ public class WheelView extends ScrollView {
         Logger.d(TAG, "parent: " + this.getParent());
 //        this.setOrientation(VERTICAL);
         this.setVerticalScrollBarEnabled(false);
-
+       this.setFadingEdgeLength(0);
+           if (Build.VERSION.SDK_INT >= 9){
+        	this.setOverScrollMode(OVER_SCROLL_NEVER);
+        }
         views = new LinearLayout(context);
         views.setOrientation(LinearLayout.VERTICAL);
         this.addView(views);
