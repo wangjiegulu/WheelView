@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WheelView.iml" filepath="$PROJECT_DIR$/WheelView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../android/AndroidBucket/androidBucket.iml" filepath="$PROJECT_DIR$/../android/AndroidBucket/androidBucket.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../android/androidInject/androidInject.iml" filepath="$PROJECT_DIR$/../android/androidInject/androidInject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
-
