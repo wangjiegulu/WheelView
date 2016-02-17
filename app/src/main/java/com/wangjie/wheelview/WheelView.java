@@ -372,14 +372,20 @@ public class WheelView extends ScrollView {
 
     public void setSeletion(int position) {
         final int p = position;
+        final int scrollY = p * itemHeight;
         selectedIndex = p + offset;
-        this.post(new Runnable() {
+
+        WheelView.this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void run() {
-                WheelView.this.smoothScrollTo(0, p * itemHeight);
+            public void onGlobalLayout() {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        WheelView.this.smoothScrollTo(0, scrollY);
+                    }
+                });
             }
         });
-
     }
 
     public String getSeletedItem() {
