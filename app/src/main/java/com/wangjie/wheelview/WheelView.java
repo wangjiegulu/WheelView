@@ -172,6 +172,7 @@ public class WheelView extends ScrollView {
     private void initData() {
         displayItemCount = offset * 2 + 1;
 
+        views.removeAllViews();
         for (String item : items) {
             views.addView(createView(item));
         }
@@ -193,7 +194,8 @@ public class WheelView extends ScrollView {
         if (0 == itemHeight) {
             itemHeight = getViewMeasuredHeight(tv);
             Log.d(TAG, "itemHeight: " + itemHeight);
-            views.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight * displayItemCount));
+            views.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, itemHeight * displayItemCount,Gravity.CENTER_HORIZONTAL));
+            views.setGravity(Gravity.CENTER);
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) this.getLayoutParams();
             this.setLayoutParams(new LinearLayout.LayoutParams(lp.width, itemHeight * displayItemCount));
         }
@@ -314,7 +316,8 @@ public class WheelView extends ScrollView {
     public void setBackgroundDrawable(Drawable background) {
 
         if (viewWidth == 0) {
-            viewWidth = ((Activity) context).getWindowManager().getDefaultDisplay().getWidth();
+//            viewWidth = ((Activity) context).getWindowManager().getDefaultDisplay().getWidth();
+            viewWidth=views.getWidth();
             Log.d(TAG, "viewWidth: " + viewWidth);
         }
 
