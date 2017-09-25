@@ -1,6 +1,8 @@
 WheelView
 =========
 
+> 最后打个广告哈，阿里巴巴，杭州招技术，支持电话视频面试，有兴趣的同学戳这里：https://github.com/wangjiegulu/jobs
+
 <img src='image/image01.png' height='500px'/>
 <img src='image/image02.png' height='500px'/>
 <img src='image/image03.png' height='500px'/>
