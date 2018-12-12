@@ -172,21 +172,22 @@ public class WheelView extends ScrollView {
     private void initData() {
         displayItemCount = offset * 2 + 1;
 
-        for (String item : items) {
-            views.addView(createView(item));
+		for (int i = 0; i < items.size(); i++) {
+            views.addView(createView(items.get(i), i - offset));
         }
-
+		
         refreshItemView(0);
     }
 
     int itemHeight = 0;
 
-    private TextView createView(String item) {
+    private View createView(String item, int itemIndex) {
         TextView tv = new TextView(context);
         tv.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         tv.setSingleLine(true);
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         tv.setText(item);
+		tv.setTag(itemIndex);
         tv.setGravity(Gravity.CENTER);
         int padding = dip2px(15);
         tv.setPadding(padding, padding, padding, padding);
@@ -197,6 +198,13 @@ public class WheelView extends ScrollView {
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) this.getLayoutParams();
             this.setLayoutParams(new LinearLayout.LayoutParams(lp.width, itemHeight * displayItemCount));
         }
+		tv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemIndex = (int) v.getTag();
+                setSeletion(itemIndex);
+            }
+        });
         return tv;
     }
 
