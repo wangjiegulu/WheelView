@@ -241,9 +241,8 @@ public class WheelView extends ScrollView {
         int remainder = y % itemHeight;
         int position = divided + offset;
 		
-		if (remainder > itemHeight / 2) {
-            position = divided + offset + 1;
-        }
+		if (remainder > itemHeight / 2) 
+            position ++;
 
         int childSize = views.getChildCount();
         for (int i = 0; i < childSize; i++) {
