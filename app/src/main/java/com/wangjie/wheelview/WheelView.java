@@ -172,21 +172,22 @@ public class WheelView extends ScrollView {
     private void initData() {
         displayItemCount = offset * 2 + 1;
 
-        for (String item : items) {
-            views.addView(createView(item));
+		for (int i = 0; i < items.size(); i++) {
+            views.addView(createView(items.get(i), i - offset));
         }
-
+		
         refreshItemView(0);
     }
 
     int itemHeight = 0;
 
-    private TextView createView(String item) {
+    private View createView(String item, int itemIndex) {
         TextView tv = new TextView(context);
         tv.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         tv.setSingleLine(true);
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         tv.setText(item);
+		tv.setTag(itemIndex);
         tv.setGravity(Gravity.CENTER);
         int padding = dip2px(15);
         tv.setPadding(padding, padding, padding, padding);
@@ -197,6 +198,13 @@ public class WheelView extends ScrollView {
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) this.getLayoutParams();
             this.setLayoutParams(new LinearLayout.LayoutParams(lp.width, itemHeight * displayItemCount));
         }
+		tv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemIndex = (int) v.getTag();
+                setSeletion(itemIndex);
+            }
+        });
         return tv;
     }
 
@@ -237,42 +245,12 @@ public class WheelView extends ScrollView {
     }
 
     private void refreshItemView(int y) {
-        int position = y / itemHeight + offset;
-        int remainder = y % itemHeight;
         int divided = y / itemHeight;
-
-        if (remainder == 0) {
-            position = divided + offset;
-        } else {
-            if (remainder > itemHeight / 2) {
-                position = divided + offset + 1;
-            }
-
-//            if(remainder > itemHeight / 2){
-//                if(scrollDirection == SCROLL_DIRECTION_DOWN){
-//                    position = divided + offset;
-//                    Log.d(TAG, ">down...position: " + position);
-//                }else if(scrollDirection == SCROLL_DIRECTION_UP){
-//                    position = divided + offset + 1;
-//                    Log.d(TAG, ">up...position: " + position);
-//                }
-//            }else{
-////                position = y / itemHeight + offset;
-//                if(scrollDirection == SCROLL_DIRECTION_DOWN){
-//                    position = divided + offset;
-//                    Log.d(TAG, "<down...position: " + position);
-//                }else if(scrollDirection == SCROLL_DIRECTION_UP){
-//                    position = divided + offset + 1;
-//                    Log.d(TAG, "<up...position: " + position);
-//                }
-//            }
-//        }
-
-//        if(scrollDirection == SCROLL_DIRECTION_DOWN){
-//            position = divided + offset;
-//        }else if(scrollDirection == SCROLL_DIRECTION_UP){
-//            position = divided + offset + 1;
-        }
+        int remainder = y % itemHeight;
+        int position = divided + offset;
+		
+		if (remainder > itemHeight / 2) 
+            position ++;
 
         int childSize = views.getChildCount();
         for (int i = 0; i < childSize; i++) {
