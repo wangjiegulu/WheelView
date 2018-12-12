@@ -237,41 +237,12 @@ public class WheelView extends ScrollView {
     }
 
     private void refreshItemView(int y) {
-        int position = y / itemHeight + offset;
-        int remainder = y % itemHeight;
         int divided = y / itemHeight;
-
-        if (remainder == 0) {
-            position = divided + offset;
-        } else {
-            if (remainder > itemHeight / 2) {
-                position = divided + offset + 1;
-            }
-
-//            if(remainder > itemHeight / 2){
-//                if(scrollDirection == SCROLL_DIRECTION_DOWN){
-//                    position = divided + offset;
-//                    Log.d(TAG, ">down...position: " + position);
-//                }else if(scrollDirection == SCROLL_DIRECTION_UP){
-//                    position = divided + offset + 1;
-//                    Log.d(TAG, ">up...position: " + position);
-//                }
-//            }else{
-////                position = y / itemHeight + offset;
-//                if(scrollDirection == SCROLL_DIRECTION_DOWN){
-//                    position = divided + offset;
-//                    Log.d(TAG, "<down...position: " + position);
-//                }else if(scrollDirection == SCROLL_DIRECTION_UP){
-//                    position = divided + offset + 1;
-//                    Log.d(TAG, "<up...position: " + position);
-//                }
-//            }
-//        }
-
-//        if(scrollDirection == SCROLL_DIRECTION_DOWN){
-//            position = divided + offset;
-//        }else if(scrollDirection == SCROLL_DIRECTION_UP){
-//            position = divided + offset + 1;
+        int remainder = y % itemHeight;
+        int position = divided + offset;
+		
+		if (remainder > itemHeight / 2) {
+            position = divided + offset + 1;
         }
 
         int childSize = views.getChildCount();
